@@ -1,16 +1,33 @@
 ---
-
+import { TypingIndicator } from "../components/TypingIndicator";
+import { UserCounter } from "../components/UserCounter";
+import "../styles/chat.css";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat App</title>
+  </head>
+  <body>
+    <div class="chat-container">
+      <header>💬 Chat em Tempo Real</header>
+
+      <!-- Componente de contador de usuários -->
+      <UserCounter client:only="react" />
+
+      <ul id="messages"></ul>
+
+      <!-- Componente de indicador de digitação -->
+      <TypingIndicator client:only="react" />
+
+      <form id="form" autocomplete="off">
+        <input id="input" placeholder="Digite uma mensagem..." />
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" defer is:inline></script>
+    <script src="/chat.js" defer is:inline></script>
+  </body>
 </html>
